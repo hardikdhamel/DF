@@ -1,0 +1,22 @@
+<html>
+    <body>
+        <form method="get" action="{% url 'product_list' %}">
+            <label for="min_price">Min Price:</label>
+            <input type="number" name="min_price" id="min_price" step="0.01" value="{{ request.GET.min_price }}">
+            
+            <label for="max_price">Max Price:</label>
+            <input type="number" name="max_price" id="max_price" step="0.01" value="{{ request.GET.max_price }}">
+        
+            <button type="submit">Filter</button>
+        </form>
+        
+        <h2>Products</h2>
+        <ul>
+            {% for product in products %}
+                <li>{{ product.name }} - ${{ product.price }}</li>
+            {% empty %}
+                <li>No products found in the selected price range.</li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>
